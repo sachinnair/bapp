@@ -1,0 +1,55 @@
+<template name="bargainspace">
+    <div class="row margintop15">
+        <div class="col-lg-3"><p class="text-muted text-center">Enter budget: </p></div>
+        <input class="col-lg-2 minbudget" type="text" {{isBudgetLocked}}/><span class="col-lg-1 text-center">UPTO</span>
+        <input class="col-lg-2  maxbudget" type="text" {{isBudgetLocked}}/>
+        <button class="btn btn-primary btn-sm col-lg-2 finalbudget" >Finalize Budget</button>
+    </div>
+    <div class="row margintop15">
+        {{> quoteprice}}
+        <br/>
+        {{messagefromserver}}
+        {{#if Template.subscriptionsReady}}
+            {{#each bargainattempts}}
+                {{> responses}}
+            {{/each}}
+        {{/if}}    
+    </div>
+</template>
+
+<template name="quoteprice">
+    <input class="col-lg-2 bargainprice" type="text">
+    <button class="btn btn-primary col-lg-2 bargain col-lg-offset-1">Bargain</button>
+    <!-- 
+        <button class="btn btn-primary col-lg-2 accept" text="Accept">Accept</button>
+     -->
+    <button class="btn btn-primary col-lg-2 pullout">Pullout</button>
+</template>
+
+<template name="responses">
+    
+    <div class="container">
+        {{#if sysmanipulatedbidprice}}
+            <span>Bid price below {{sysmanipulatedbidprice}} not entertained.</span> 
+        {{else}}
+            <span>Bid price {{bidprice}} declined.</span> 
+        {{/if}}
+        {{#if newaskingprice}}
+            <span> New asking price is {{newaskingprice}}</span>
+        {{else}}
+            <span> No change in asking price {{askingprice}} </span>
+        {{/if}}
+        {{#if islatest}}
+            <button class="btn btn-primary col-lg-2 pullout">Accept</button>
+        {{/if}}
+    </div>
+    
+</template>
+
+<template name="rejectedbargain">
+    <p>Bargain price of {{rejectedbargainprice}} declined</p>
+</template>
+
+<template name="acceptedbargain">
+    <p>Offered price {{acceptablebargainprice}} </p>
+</template>

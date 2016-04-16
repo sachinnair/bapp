@@ -1,0 +1,25 @@
+collection maintaining all bargained transactions
+bargains
+    {
+        propertyid: <some property details>
+        , bidroundno: 
+        , askingprice (price quoted by host):
+        , bidprice (price quoted by guest):
+        , guest:
+        , host:
+        , guestofferstatus: <accepted, declined, pulledout>
+        , hostofferstatus: <accepted, declined, pulledout>
+    }
+Use Meteor.method to check whether bid or asking prices are within the ranges they had mentioned earlier
+
+tenants & landlords
+guests & hosts
+
+
+
+References:
+http://www.zacks.com/stock/news/200846/investing-in-resting-is-airbnb-a-top-2016-ipo-candidate
+http://scholar.dominican.edu/cgi/viewcontent.cgi?article=1189&context=masters-theses
+http://www.sfbos.org/Modules/ShowDocument.aspx?documentid=52601
+http://www.investors.com/news/technology/airbnb-political-win-does-not-end-conflicts/
+http://www.ahla.com/uploadedFiles/_Common/pdf/PennState_AirBnbReport_.pdf

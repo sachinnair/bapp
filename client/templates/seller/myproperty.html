@@ -1,0 +1,48 @@
+<template name="myproperty">
+    <div class="container">
+        
+        {{#each rentedprops Template.subscriptionsReady}}
+            <div class="jumbotron">
+              <div><span class="label label-primary col-sm-1">Name</span>{{name}} </div>
+              <div><span class="label label-primary col-sm-1">Location</span>{{location}} </div>
+              <div><span class="label label-primary col-sm-1">Price</span>{{displayprice}}</div>
+              {{#if currentUser}}
+                  <input type="button" class="viewbids" value="View bids"/>
+              {{/if}}
+              <!-- 
+                  {{#each bargainhistory}}
+                    {{> }}
+                  {{/each}}
+               -->
+                
+              <div class="accordion">
+                  <!-- 
+                      {{> receivedbids data=bargainhistory}}
+                   -->
+                   {{> receivedbids retdata=(attemptedbargain _id._str) }}
+              </div>
+            </div>
+        {{/each}}    
+    </div>
+</template>
+
+<template name="receivedbids">
+    {{#each retdata}}
+        {{#if sysmanipulatedbidprice}}
+            <span> {{guest}} offered a price of {{sysmanipulatedbidprice}}</span>
+        {{else}}
+            <span> {{guest}} offered a price of {{bidprice}}</span>
+        {{/if}}
+        <button class="accept">Accept</button>
+        <br/>
+        <input type="text" class="newaskprice">
+        {{#if sysmanipulatedbidprice}}
+            <button class="encourage">Encourage</button>
+        {{else}}
+            <button class="bargain">Bargain</button>
+        {{/if}}
+        <button class="decline">Decline</button>
+        <button class="pullout">Pullout</button>
+        <br/>
+    {{/each}}
+</template>

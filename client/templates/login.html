@@ -1,0 +1,46 @@
+<template name="loginPage">
+  <div class="navbar navbar-default" role="navigation">
+  	<div class="navbar-header">
+  		<a class="navbar-brand" href="#">Project name</a>
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+          </button>
+  	</div>
+  	<div class="navbar-collapse collapse">
+  		<ul class="nav navbar-nav">
+  			<li class="active"><a href="#">Link</a></li>
+  		</ul>
+  		<ul class="nav navbar-nav navbar-right">
+  			{{> loginButtons}} <!-- here -->
+  		</ul>
+  	</div>
+  </div>
+  {{#if isPropertyListing}}
+    <a href="/properties">Back to property listing</a>
+  {{/if}}  
+  {{#if isMyPropertyListing}}
+    <a href="/myproperties" style='right: 10px; position: absolute;'>My Properties</a>
+  {{/if}}  
+</template>
+
+<!-- <template name="loginPage">
+  <div>Logo</div>
+  --><!-- <div class="navbar">
+      <a class="navbar-brand" href="#">Title</a>
+      <ul class="nav navbar-nav pull-right">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#">Link</a></li>
+          <li>{{>loginButtons}}</li>
+      </ul>
+  </div> -->
+<!--  {{>loginButtons}}-->
+
+  <!-- <div class="navbar navbar-default">
+    <div class="input-group-btn">
+      {{> loginButtons}}
+    </div>
+  </div> -->
+<!--</template> -->

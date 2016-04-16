@@ -1,0 +1,26 @@
+<template name="mini_rentdetails">
+  {{#each rentedprops}}
+    <div class="jumbotron">
+      <div><span class="label label-primary col-sm-1">Name</span>{{name}} </div>
+      <div><span class="label label-primary col-sm-1">Location</span>{{location}} </div>
+      <div><span class="label label-primary col-sm-1">Price</span>{{avgprice}}</div>
+      {{#if currentUser}}
+          <input type="button" class="getquote" value="Get Quote"/>
+      {{/if}}
+    </div>
+  {{/each}}
+</template>
+
+<template name="full_rentdetails">
+  {{#if Template.subscriptionsReady}}
+      {{#with rentedprop }}
+        <div class="jumbotron">
+          <div><span class="label label-primary col-sm-1">Name</span>{{name}} </div>
+          <div><span class="label label-primary col-sm-1">Location</span>{{location}} </div>
+          <div><span class="label label-primary col-sm-1">Price</span>{{avgprice}} </div>
+          <input type="button" class="getquote" value="Get Quote"/>
+          <div><span class="label label-primary col-sm-1">Full Description</span></div>
+        </div>
+      {{/with}}
+  {{/if}}
+</template>

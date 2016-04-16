@@ -1,0 +1,10 @@
+<template name="tabbedview">
+  <ul class="nav nav-tabs">
+    <li role="presentation" class="active paymentmodes"><a id="method1" href="#">Method1</a></li>
+    <li role="presentation" class="paymentmodes"><a  id="method2" href="#">Method2</a></li>
+    <!-- <li role="presentation"><a href="#">Messages</a></li> -->
+  </ul>
+  <div class="container paymentmodeholder">
+      {{> Template.dynamic template=paymentmode}}
+  </div>
+</template>

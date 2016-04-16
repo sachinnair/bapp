@@ -1,0 +1,31 @@
+<template name="addprop">
+    <!-- This should be form here -->
+    <div class="container">
+        <div>Add property details</div>
+        <div class="propname">
+            <label for="propname">Name</label>
+            <input id="propname" class="txtpropname" type="text">
+        </div>
+        <div class="location">
+            <label for="location">Location</label>
+            <input id="location" class="txtlocation" type="text">
+        </div>
+        <div class="budget">
+            <span>Enter budget details</span><br/>
+            <label for="minprice">Min Price</label>
+            <input id="minprice" class="minprice" type="text">
+            <label for="maxprice">Max Price</label>
+            <input id="maxprice" class="maxprice" type="text">
+            <!-- calculated value to be shown here -->
+            <div class="displayprice"></div>
+        </div>
+        <div class="paymentmodes">
+            <label for="pmode1">Method1</label>
+            <input id="pmode1" type="checkbox">
+            <label for="pmode2">Method2</label>
+            <input id="pmode2" type="checkbox">
+            <label for="pmode3">Method3</label>
+            <input id="pmode3" type="checkbox">
+        </div>
+    </div>
+</template>

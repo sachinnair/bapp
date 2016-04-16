@@ -1,0 +1,19 @@
+db.rentedprops.insert({ name: "Hill View Berlin", location:"Berlin", price:{min:1500,max:2000}, owner:{name:"Mathews", email:"mat@zyx.com", contact:"789-456-123"}, createdAt: new Date() });
+
+db.rentedprops.insert({ name: "Sea View Berlin", location:"Berlin", price:{min:1510,max:2000}, owner:{name:"Mathews", email:"mat@zyx.com", contact:"789-456-123"}, createdAt: new Date() });
+
+db.rentedprops.insert({ name: "Hill Rock Berlin", location:"Berlin", price:{min:1570,max:2000}, owner:{name:"Mathews", email:"mat@zyx.com", contact:"789-456-123"}, createdAt: new Date() });
+
+db.rentedprops.insert({ name: "Rock View Berlin", location:"Berlin", price:{min:1520,max:2000}, owner:{name:"Mathews", email:"mat@zyx.com", contact:"789-456-123"}, createdAt: new Date() });
+
+db.rentedprops.insert({ name: "Sea Rock Berlin", location:"Berlin", price:{min:1590,max:2000}, owner:{name:"Mathews", email:"mat@zyx.com", contact:"789-456-123"}, createdAt: new Date() });
+
+
+db.rentedprops.find().snapshot().forEach(
+  function (e) {
+    e.displayprice = (e.price.min + e.price.max)/2;
+
+    // save the updated document
+    db.rentedprops.save(e);
+  }
+)
