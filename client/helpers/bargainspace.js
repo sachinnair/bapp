@@ -21,7 +21,6 @@ Template.bargainspace.helpers({
     },
     bargainattempts:function(){
         bargainattempts = Bargain.find().fetch().reverse()   
-        // console.log(bargainattempts);
         if(bargainattempts.length > 0){
             lastbargainattempt = bargainattempts[0]
             lastbargainattempt["islatest"] = true
