@@ -1,6 +1,7 @@
-
-Meteor.publish("listmyprop",function(){
-    
-    hostemail = Meteor.users.findOne({_id:this.userId}).emails[0].address;
-    return RentedProps.find({"owner.email":hostemail});
-})
+Meteor.publish("rentedprops", function(propertyid){
+    if(propertyid){
+        return RentedProps.find({_id:new Meteor.Collection.ObjectID(propertyid)});
+    }else{
+        return RentedProps.find()
+    }
+});

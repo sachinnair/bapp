@@ -1,12 +1,24 @@
+Meteor.publish("bargain", function(){
+    var varargs;
+    varargs = arguments;
+    var propertyid = (ref = arguments[0], ref !== undefined ? ref: {$ne:null});
+    var host = (ref = arguments[1], ref !== undefined ? ref: {$ne:null});
+    var guest = (ref = arguments[2], ref !== undefined ? ref : {$ne:null});
+    var greaterthandate = (ref = arguments[3], ref !== undefined ? new Date(ref) : new Date('1900-01-01'));
+    return Bargain.find({propertyid:propertyid,host:host,guest:guest,createdAt:{$gte:greaterthandate},modeofpayment:{$exists:false}});
+})
+
 Meteor.publish('bargainmode2', function(filter, options){
-    userid = this.userId;
-    guestemail =  Meteor.users.findOne({_id: this.userId}).emails[0].address;
-    filter = {modeofpayment:"method2", propertyid: filter, guest:guestemail, hostofferstatus:{$in:["pending","declined"]}}
+    var userid = this.userId;
+    var guestemail =  Meteor.users.findOne({_id: this.userId}).emails[0].address;
+    var filter = {modeofpayment:"method2", propertyid: filter, guest:guestemail, hostofferstatus:{$in:["pending","declined"]}}
     return Bargain.find(filter);
 })
 
 
 checkbudgetoverlap = function(propertyid, minprice, maxprice){
+    calluserservice();
+
     if(this.connection==null){
         var oRentedprop = RentedProps.findOne({_id:new Meteor.Collection.ObjectID(propertyid)});
 
