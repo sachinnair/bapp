@@ -11,7 +11,7 @@ Template.mini_rentdetails.events({
   "click .getquote": function(ev, tmpl){
     ev.preventDefault();
     // this returns the ref of document from mongo collection:
-    var propertyid = this._id._str;
+    var propertyid = this._id._str == undefined ? this._id : this._id._str;
     FlowRouter.go("/properties/:propertyid", {propertyid: propertyid});
     Session.set("selectedprop", this);
     return this;
@@ -30,8 +30,18 @@ Template.full_rentdetails.helpers({
   rentedprop: function(){
     //Meteor.subsribe("rentedprops")
     var propertyid = FlowRouter.getParam("propertyid");
-    var oid = new Meteor.Collection.ObjectID(propertyid);
-    var oRentedProp = RentedProps.findOne(oid);
+    var oid,oRentedProp;
+    try{
+        oid = new Meteor.Collection.ObjectID(propertyid);
+    }
+    catch(e){
+        if(typeof propertyid == 'string'){
+            oid = propertyid;
+        }
+    }
+    finally{
+        oRentedProp = RentedProps.findOne(oid);
+    }    
     oRentedProp.avgprice = (oRentedProp.price.max + oRentedProp.price.min)/2
     return oRentedProp;
     // return Session.get("selectedprop");

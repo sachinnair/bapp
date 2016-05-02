@@ -4,8 +4,18 @@
 
 var updateBargain = function(data){
     var propertyid = FlowRouter.getParam("propertyid");
-    var oid = new Meteor.Collection.ObjectID(propertyid);
-    var oRentedProp = RentedProps.findOne(oid);
+    var oid,oRentedProp;
+    try{
+        oid = new Meteor.Collection.ObjectID(propertyid);
+    }
+    catch(e){
+        if(typeof propertyid == 'string'){
+            oid = propertyid;
+        }
+    }
+    finally{
+        oRentedProp = RentedProps.findOne(oid);
+    }
     // var datepastmonth = moment().subtract(1,'months');
     var datepastmonth = new Date('2016-02-20')// moment().subtract(1,'months');
     selector = {
@@ -19,8 +29,18 @@ var updateBargain = function(data){
 
 var recordBargain = function(bidno){
     var propertyid = FlowRouter.getParam("propertyid");
-    var oid = new Meteor.Collection.ObjectID(propertyid);
-    var oRentedProp = RentedProps.findOne(oid);
+    var oid,oRentedProp;
+    try{
+        oid = new Meteor.Collection.ObjectID(propertyid);
+    }
+    catch(e){
+        if(typeof propertyid == 'string'){
+            oid = propertyid;
+        }
+    }
+    finally{
+        oRentedProp = RentedProps.findOne(oid);
+    }
     var bidroundno = bidno || 0;
     // var bidroundno = bidroundno.get("roundno") || 0;
     // bidroundno.set("roundno", ++bidroundno);
@@ -49,8 +69,18 @@ Template.spinview.onCreated(function(){
     self.autorun(function(){
         var propertyid = FlowRouter.getParam("propertyid");
         self.subscribe("rentedprops", propertyid, function(){
-            var oid = new Meteor.Collection.ObjectID(propertyid);
-            var oRentedProp = RentedProps.findOne(oid);
+            var oid,oRentedProp;
+            try{
+                oid = new Meteor.Collection.ObjectID(propertyid);
+            }
+            catch(e){
+                if(typeof propertyid == 'string'){
+                    oid = propertyid;
+                }
+            }
+            finally{
+                oRentedProp = RentedProps.findOne(oid);
+            }
             // var datepastmonth = moment().subtract(1,'months');
             var datepastmonth = moment().subtract(1,'months').format('YYYY-MM-DD');
             self.subscribe("bargain", propertyid, oRentedProp.owner.email, Meteor.user().emails[0].address, datepastmonth);// Just return total number of entries in bargain (bargainhistory)
@@ -66,8 +96,18 @@ Template.spinview.helpers({
     // Insert roll info into bargain collection
     // Method.call();
     var propertyid = FlowRouter.getParam("propertyid");
-    var oid = new Meteor.Collection.ObjectID(propertyid);
-    var oRentedProp = RentedProps.findOne(oid);
+    var oid,oRentedProp;
+    try{
+        oid = new Meteor.Collection.ObjectID(propertyid);
+    }
+    catch(e){
+        if(typeof propertyid == 'string'){
+            oid = propertyid;
+        }
+    }
+    finally{
+        oRentedProp = RentedProps.findOne(oid);
+    }
     // bidroundno.get('bidroundno')
     bidno = Bargain.find().fetch().length
     if(bidno == 0){
@@ -88,8 +128,18 @@ Template.spinhistory.onCreated(function(){
     self.autorun(function(){
         var propertyid = FlowRouter.getParam("propertyid");
         self.subscribe("rentedprops", propertyid, function(){
-            var oid = new Meteor.Collection.ObjectID(propertyid);
-            var oRentedProp = RentedProps.findOne(oid);
+            var oid,oRentedProp;
+            try{
+                oid = new Meteor.Collection.ObjectID(propertyid);
+            }
+            catch(e){
+                if(typeof propertyid == 'string'){
+                    oid = propertyid;
+                }
+            }
+            finally{
+                oRentedProp = RentedProps.findOne(oid);
+            }
             var datepastmonth = moment().subtract(1,'months').format('YYYY-MM-DD');
             self.subscribe("bargain", propertyid, oRentedProp.owner.email, Meteor.user().emails[0].address, datepastmonth);// Just return total number of entries in bargain (bargainhistory)
         });

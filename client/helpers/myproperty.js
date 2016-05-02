@@ -14,7 +14,7 @@ Template.myproperty.helpers({
     rentedprops:function(){
         
         var arryRentdprops = RentedProps.find({},{transform:function(x){
-            var propid = x._id._str;
+            var propid = x._id._str == undefined? x._id : x._id._str;
             x.bargainhistory = Bargain.find({propertyid:propid, modeofpayment:"method2", guestofferstatus:"pending"}).fetch();
             return x;
         }});
@@ -24,6 +24,10 @@ Template.myproperty.helpers({
         return Template.instance().get();
     },
     attemptedbargain: function(propid){
+        if(typeof propid != 'string'){
+            propid = propid._str
+        }
+
         var retdata = Bargain.find({propertyid:propid, modeofpayment:"method2", guestofferstatus:"pending"}).fetch();
         return retdata;
     }

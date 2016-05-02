@@ -20,7 +20,20 @@ checkbudgetoverlap = function(propertyid, minprice, maxprice){
     calluserservice();
 
     if(this.connection==null){
-        var oRentedprop = RentedProps.findOne({_id:new Meteor.Collection.ObjectID(propertyid)});
+
+        var oid,oRentedprop;
+        
+        try{
+            oid = new Meteor.Collection.ObjectID(propertyid);
+        }
+        catch(e){
+            if(typeof propertyid == 'string'){
+                oid = propertyid;
+            }
+        }
+        finally{
+            oRentedprop = RentedProps.findOne(oid);
+        }
 
         if(maxprice > oRentedprop.price.min){
             return true;
@@ -56,7 +69,15 @@ makebid = function(propertyid, bidprice, budget){
     // Get rented prop details 
     // get lastasking price
     // get host details - through rent prop details
-    var oid = new Meteor.Collection.ObjectID(propertyid);
+    var oid;
+    try{
+        oid = new Meteor.Collection.ObjectID(propertyid);
+    }
+    catch(e){
+        if(typeof propertyid == 'string'){
+            oid = propertyid;
+        }
+    }
     var guestemail = Meteor.user().emails[0].address;
     var lastbiddetails = getlastbiddetails(propertyid, guestemail);
     var propdetails = RentedProps.findOne({_id:oid}, {fields:{"price.min":1,"price.max":1, "owner.email":1, "displayprice":1}})

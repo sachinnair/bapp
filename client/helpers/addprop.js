@@ -12,7 +12,7 @@ Template.addprop.events({
                 , email: Meteor.user().emails[0].address
                 , contact: ""    }
             ,createdAt: new Date()
-            ,displayPrice: (parseInt(ev.target.minprice.value) + parseInt(ev.target.maxprice.value))/2
+            ,displayprice: (parseInt(ev.target.minprice.value) + parseInt(ev.target.maxprice.value))/2
         }        
         Meteor.call("rentedprop.add", data, function(){
             tmpl.$(".container form input[type!=submit]").val("");
